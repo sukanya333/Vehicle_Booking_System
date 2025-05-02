@@ -17,11 +17,11 @@ VehicleRouter.get("/vehicle/getVehicleById/:id",
     vehicleController.getVehicleById);
 // VehicleRouter.get("/vehicle/getAllVehicles", isAuthenticated, vehicleController.getAllVehicles);
 
-// VehicleRouter.delete("/vehicle/deleteVehicle/:id",
-//     //isAuthenticated,
-//     vehicleController.deleteVehicle);
-// VehicleRouter.delete("/vehicle/bulkDeleteVehicles",
-//     //isAuthenticated,
-//     vehicleController.bulkDeleteVehicles);
+VehicleRouter.delete("/vehicle/deleteVehicle/:id",
+    //isAuthenticated,
+    vehicleController.deleteVehicle);
+VehicleRouter.delete("/vehicle/bulkDeleteVehicles",
+    //isAuthenticated,
+    vehicleController.bulkDeleteVehicles);
 
 export { VehicleRouter };

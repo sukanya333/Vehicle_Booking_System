@@ -53,12 +53,42 @@ export class UserController {
         try {
             const { page = 1, limit = 10 } = req.query;
             const offset = (Number(page) - 1) * Number(limit);
-            const branchId = req.branchId as string;
+            
+           // const branchId = req.branchId as string;
 
-            const users = await this.UserService.getAllUsers(branchId, offset, Number(limit));
+            const users = await this.UserService.GetAllUsers(offset, Number(limit));
             res.status(200).json({ data: users });
         } catch (err) {
             res.status(400).json({ error: "Something went wrong." });
         }
     }; */
+
+    public deleteUser = async (req: Request, res: Response): Promise<any> => {
+        const id = req.params.id;
+
+        if (!id) return res.status(400).json({ error: "Invalid user ID." });
+
+        try {   
+            const user = await this.UserService.DeleteUser(id);
+            res.status(200).json({ message: "User deleted successfully.", data: user });
+        } catch (err) {
+            console.error("DeleteUser Error:", err);
+            res.status(400).json({ error: "Something went wrong." });
+        }
+    };
+     
+    public bulkDeleteUsers = async (req: Request, res: Response): Promise<any> => {
+        const ids = req.body.ids;
+
+        if (!ids) return res.status(400).json({ error: "Invalid user IDs." });
+
+        try {
+            const users = await this.UserService.BulkDeleteUser(ids);
+            res.status(200).json({ message: "Users deleted successfully.", data: users });
+        } catch (err) {
+            console.error("BulkDeleteUser Error:", err);
+            res.status(400).json({ error: "Something went wrong." });
+        }
+    };
+    
 }

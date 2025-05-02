@@ -75,4 +75,34 @@ export class BookingController {
             res.status(400).json({ error: "Something went wrong." });
         }
     }; */
+
+    public deleteBooking = async (req: Request, res: Response): Promise<any> => {
+        const id = req.params.id;
+
+        if (!id) return res.status(400).json({ error: "Invalid booking ID." });
+
+        try {
+            const booking = await this.BookingService.DeleteBooking(id);
+            res.status(200).json({ message: "Booking deleted successfully.", data: booking });
+        } catch (err) {
+            console.error("DeleteBooking Error:", err);
+            res.status(400).json({ error: "Something went wrong." });
+        }
+    };
+
+    public bulkDeleteBookings = async (req: Request, res: Response): Promise<any> => {
+        const ids = req.body.ids;
+
+        if (!ids) return res.status(400).json({ error: "Invalid booking IDs." });
+
+        try {
+            const bookings = await this.BookingService.BulkDeleteBooking(ids);
+            res.status(200).json({ message: "Bookings deleted successfully.", data: bookings });
+        } catch (err) {
+            console.error("BulkDeleteBooking Error:", err);
+            res.status(400).json({ error: "Something went wrong." });
+        }
+    };
+    
+    
 }

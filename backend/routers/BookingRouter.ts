@@ -10,7 +10,7 @@ BookingRouter.put("/booking/updateBooking/:id", bookingController.updateBooking)
 BookingRouter.get("/booking/getBookingById/:id", bookingController.getBookingById);
 // BookingRouter.get("/booking/getAllBookings", bookingController.getAllBookings);
 
-// BookingRouter.delete("/booking/deleteBooking/:id", bookingController.deleteBooking);
-// BookingRouter.delete("/booking/bulkDeleteBookings", bookingController.bulkDeleteBookings);
+BookingRouter.delete("/booking/deleteBooking/:id", bookingController.deleteBooking);
+BookingRouter.delete("/booking/bulkDeleteBookings", bookingController.bulkDeleteBookings);
 
 export { BookingRouter };

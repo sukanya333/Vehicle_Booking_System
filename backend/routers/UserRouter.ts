@@ -19,11 +19,11 @@ UserRouter.get("/user/getUserById/:id",
 //     //isAuthenticated,
 //     userController.getAllUsers);
 
-// UserRouter.delete("/user/deleteUser/:id",
-//     //isAuthenticated,
-//     userController.deleteUser);
-// UserRouter.delete("/user/bulkDeleteUsers",
-//     //isAuthenticated,
-//     userController.bulkDeleteUsers);
+UserRouter.delete("/user/deleteUser/:id",
+        //isAuthenticated,
+    userController.deleteUser);
+UserRouter.delete("/user/bulkDeleteUsers",
+        //isAuthenticated,
+    userController.bulkDeleteUsers);
 
 export { UserRouter };

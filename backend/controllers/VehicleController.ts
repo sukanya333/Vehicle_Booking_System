@@ -62,4 +62,34 @@ export class VehicleController {
             res.status(400).json({ error: "Something went wrong." });
         }
     }; */
+
+    public deleteVehicle = async (req: Request, res: Response): Promise<any> => {
+        const id = req.params.id;
+
+        if (!id) return res.status(400).json({ error: "Invalid vehicle ID." });
+
+        try {
+            const vehicle = await this.VehicleService.DeleteVehicle(id);
+            res.status(200).json({ message: "Vehicle deleted successfully.", data: vehicle });
+        } catch (err) {
+            console.error("DeleteVehicle Error:", err);
+            res.status(400).json({ error: "Something went wrong." });
+        }
+    };
+
+    public bulkDeleteVehicles = async (req: Request, res: Response): Promise<any> => {
+        const ids = req.body.ids;
+
+        if (!ids) return res.status(400).json({ error: "Invalid vehicle IDs." });
+
+        try {
+            const vehicles = await this.VehicleService.BulkDeleteVehicle(ids);
+            res.status(200).json({ message: "Vehicles deleted successfully.", data: vehicles });
+        } catch (err) {
+            console.error("BulkDeleteVehicle Error:", err);
+            res.status(400).json({ error: "Something went wrong." });
+        }
+    };
+    
+    
 }
