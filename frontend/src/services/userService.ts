@@ -1,8 +1,18 @@
 import axios from 'axios';
-const API_BASE = 'http://localhost:3000';
 
-export const createUser = (data: unknown) => axios.post(`${API_BASE}/User/createUser`, data);
-export const updateUser = (id: number, data: unknown) => axios.put(`${API_BASE}/User/updateUser/${id}`, data);
-export const getUserById = (id: number) => axios.get(`${API_BASE}/User/getUserById/${id}`);
-export const deleteUser = (id: number) => axios.delete(`${API_BASE}/User/deleteUser/${id}`);
-export const bulkDeleteUsers = (ids: number[]) => axios.delete(`${API_BASE}/User/bulkDeleteUsers`, { data: { ids } });
+const API_BASE = 'http://localhost:5000'; // Adjust if different port
+
+export const createUser = (data: { name: string; email: string; password: string }) =>
+  axios.post(`${API_BASE}/user/createUser`, data);
+
+export const updateUser = (id: string, data: { name: string; email: string; password: string }) =>
+  axios.put(`${API_BASE}/user/updateUser/${id}`, data);
+
+export const getUserById = (id: string) =>
+  axios.get(`${API_BASE}/user/getUserById/${id}`);
+
+export const deleteUser = (id: string) =>
+  axios.delete(`${API_BASE}/user/deleteUser/${id}`);
+
+export const bulkDeleteUsers = (ids: string[]) =>
+  axios.delete(`${API_BASE}/user/bulkDeleteUsers`, { data: { ids } });
